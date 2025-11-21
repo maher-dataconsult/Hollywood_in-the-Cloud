@@ -77,7 +77,7 @@ API → Lambda → S3 → Glue → Athena → Power BI
 - **Challenge**: Security and permission management
 - **Solution**: Created granular roles with specific permissions for each service
 
-## Dashboard
+## 📊 Dashboard
 
 ![image](_analysis_dashboard.png)
 
