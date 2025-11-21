@@ -1,36 +1,156 @@
-🎬 From 1902 to 2024: I Built a Cloud Pipeline to Analyze 122 Years of Hollywood Data
+# 🎬 Hollywood in the Cloud
 
-I'm excited to share my latest data engineering project: "Hollywood in the Cloud" – a fully automated, serverless pipeline that processes over a century of US Box Office data.
+> An End-to-End Serverless Data Pipeline for Box Office Analysis
 
-🎯 THE CHALLENGE:
-How do you turn 100+ years of film industry data into actionable insights for production studios and distributors?
+A fully automated, cloud-native data engineering project that ingests, processes, and analyzes over 100 years of US Box Office data (1902-2024) using AWS services and Power BI.
 
-⚙️ THE SOLUTION:
-I built an end-to-end AWS data pipeline that automatically:
-• Ingests data via Lambda functions
-• Stores raw files in S3 Data Lake
-• Transforms data with Glue crawlers
-• Queries with Athena
-• Visualizes insights in Power BI
+## 📊 Project Overview
 
-🔧 TECHNICAL WINS:
-✅ Overcame Lambda timeout constraints (3s → 15min)
-✅ Architected S3 structure for optimal crawler performance
-✅ Configured granular IAM roles for security
-✅ Connected Power BI to Athena via ODBC for real-time dashboards
+This project demonstrates a complete ETL pipeline built on AWS infrastructure to answer critical questions about the film industry:
 
-📊 FASCINATING INSIGHTS:
-🎭 Drama & Comedy lead in VOLUME, but Adventure & Action win in POPULARITY
-📅 70% of releases target Q4 (Oct-Nov) for holiday audiences and awards season
-🌍 French films dominate foreign language cinema (739 films – nearly 2x Italian/Japanese)
+- **What are the long-term trends in movie production?**
+- **Which genres are most common vs. most popular?**
+- **How do English and Non-English films compare?**
+- **What are the most popular foreign languages in film?**
 
-💡 KEY TAKEAWAY:
-Serverless architecture isn't just about cost savings – it's about building scalable, maintainable solutions that transform raw data into strategic business intelligence.
+### Target Audience
 
-The entire pipeline runs automatically, from API to dashboard, with zero server management.
+- **Production Studios** – Data-driven insights for green-lighting new projects
+- **Film Distributors** – Strategic analysis for optimal release windows
 
-🔗 Full technical breakdown and code available on GitHub [link in comments]
+## 🏗️ Architecture
 
-What's your experience with serverless data pipelines? I'd love to hear your thoughts!
+The pipeline follows a serverless, event-driven architecture:
 
-#DataEngineering #AWS #CloudComputing #ServerlessArchitecture #DataAnalytics #ETL #BigData #PowerBI #DataScience #BoxOffice #FilmIndustry
+```
+API → Lambda → S3 → Glue → Athena → Power BI
+```
+
+### Tech Stack
+
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| **Security** | AWS IAM | Role-based access control with least privilege permissions |
+| **Ingest** | AWS Lambda | Automated data fetching from external API |
+| **Storage** | AWS S3 | Data Lake for raw and processed CSV files |
+| **Transform** | AWS Glue | Schema discovery via crawlers and data cleaning |
+| **Query** | AWS Athena | SQL-based querying of optimized tables |
+| **Visualize** | Microsoft Power BI | Interactive dashboard via ODBC connection |
+
+## 🔄 Workflow
+
+1. **Data Ingestion**: Lambda function fetches box office data from API
+2. **Raw Storage**: CSV files stored in S3 Data Lake with separated locations
+3. **Schema Discovery**: Glue crawlers parse metadata from each CSV
+4. **Data Transformation**: Glue jobs clean and optimize data
+5. **Unified Table**: Athena creates a queryable unified table
+6. **Visualization**: Power BI connects via ODBC for interactive analysis
+
+## 🚧 Challenges & Solutions
+
+### AWS Lambda
+- **Challenge**: Function timeout (initial 3 seconds)
+- **Solution**: Extended timeout to 15 minutes and configured environment variables
+
+### AWS S3
+- **Challenge**: Crawler configuration requirements
+- **Solution**: Split Lambda CSV outputs into separate S3 locations (mandatory for crawler operation)
+
+### AWS Glue
+- **Challenge**: Schema parsing for multiple data sources
+- **Solution**: Configured individual crawler per CSV file
+
+### AWS Athena
+- **Challenge**: Unified data access
+- **Solution**: Created consolidated table stored in S3
+
+### Power BI
+- **Challenge**: Cloud connectivity
+- **Solution**: Implemented ODBC service for Athena connection
+
+### AWS IAM
+- **Challenge**: Security and permission management
+- **Solution**: Created granular roles with specific permissions for each service
+
+## 📈 Key Insights
+
+### Quality vs. Quantity
+Drama and Comedy lead in volume, but **Adventure and Action** genres achieve the highest popularity ratings.
+
+### Seasonality Patterns
+Peak releases concentrate in **Q4 (October/November)**, strategically targeting:
+- Holiday audiences
+- Award season consideration
+
+### Language Trends
+**French dominates** the foreign language market with 739 films—nearly double that of Italian or Japanese.
+
+## 🛠️ Setup & Deployment
+
+### Prerequisites
+- AWS Account with appropriate permissions
+- Power BI Desktop or Service
+- ODBC driver for Amazon Athena
+
+### AWS Services Configuration
+
+1. **IAM Setup**
+   ```bash
+   # Create roles with necessary permissions for Lambda, S3, Glue, and Athena
+   ```
+
+2. **Lambda Configuration**
+   - Set timeout to 15 minutes
+   - Configure environment variables
+   - Deploy ingestion function
+
+3. **S3 Bucket Structure**
+   ```
+   s3://your-bucket/
+   ├── raw/
+   │   ├── dataset1/
+   │   ├── dataset2/
+   │   └── dataset3/
+   └── processed/
+   ```
+
+4. **Glue Crawlers**
+   - Create one crawler per CSV source
+   - Configure to run on schedule or trigger
+
+5. **Athena Setup**
+   - Create unified table from crawled metadata
+   - Configure query result location
+
+6. **Power BI Connection**
+   - Install Athena ODBC driver
+   - Configure data source with AWS credentials
+   - Build interactive dashboard
+
+## 📊 Dashboard Features
+
+- Historical trend analysis (1902-2024)
+- Genre performance comparison
+- Language distribution visualization
+- Seasonal release pattern analysis
+- Popularity vs. volume metrics
+
+## 🎯 Future Enhancements
+
+- Real-time streaming data ingestion
+- Machine learning models for box office prediction
+- Additional data sources (international markets)
+- Automated alerting for industry trends
+- Cost optimization with S3 lifecycle policies
+
+## 📝 License
+
+This project is available for educational and analytical purposes.
+
+## 👤 Author
+
+**Maher Mahmoud Maher**
+
+---
+
+*Presentation Date: November 22, 2025*
