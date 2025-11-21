@@ -4,6 +4,9 @@
 
 A fully automated, cloud-native data engineering project that ingests, processes, and analyzes over 100 years of US Box Office data (1902-2024) using AWS services and Power BI.
 
+![image](_workflow_diagram.png)
+![image](_analysis_dashboard.png)
+
 ## 📊 Project Overview
 
 This project demonstrates a complete ETL pipeline built on AWS infrastructure to answer critical questions about the film industry:
@@ -39,6 +42,8 @@ API → Lambda → S3 → Glue → Athena → Power BI
 
 ## 🔄 Workflow
 
+![image](_workflow_diagram.png)
+
 1. **Data Ingestion**: Lambda function fetches box office data from API
 2. **Raw Storage**: CSV files stored in S3 Data Lake with separated locations
 3. **Schema Discovery**: Glue crawlers parse metadata from each CSV
@@ -71,6 +76,10 @@ API → Lambda → S3 → Glue → Athena → Power BI
 ### AWS IAM
 - **Challenge**: Security and permission management
 - **Solution**: Created granular roles with specific permissions for each service
+
+## Dashboard
+
+![image](_analysis_dashboard.png)
 
 ## 📈 Key Insights
 
