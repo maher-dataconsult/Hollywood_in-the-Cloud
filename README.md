@@ -143,11 +143,11 @@ Peak releases concentrate in **Q4 (October/November)**, strategically targeting:
 - Language distribution visualization
 - Seasonal release pattern analysis
 - Popularity vs. volume metrics
+  
+## 👥 Authors
 
-## 👤 Author
-
-**Maher Mahmoud Maher**
-
+* **Maher Mahmoud** - [GitHub Profile](https://github.com/maher-dataconsult)
+* **Yousef Mahmoud** - [GitHub Profile](https://github.com/Y0U5F)
 ---
 
 *Presentation Date: November 22, 2025*
